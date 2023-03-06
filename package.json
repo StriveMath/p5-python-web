@@ -1,0 +1,24 @@
+{
+  "name": "p5-python-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build.js",
+  "type": "module",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StriveMath/p5-python-web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StriveMath/p5-python-web/issues"
+  },
+  "homepage": "https://github.com/StriveMath/p5-python-web#readme"
+}
