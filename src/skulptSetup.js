@@ -46,12 +46,12 @@ async function runCode(filename = "sketch.py") {
     );
 }
 
-// console._log = console.log;
-// console.log = function () {
-//     if (typeof arguments[0] === "string")
-//         arguments[0] = arguments[0].replace("http://p5js.org/reference/#/p5/", "https://p5.strivemath.com/reference/");
-//
-//     console._log(...arguments);
-// }
+console._log = console.log;
+console.log = function () {
+    if (typeof arguments[0] === "string")
+        arguments[0] = arguments[0].replace("http://p5js.org/reference/#/p5/", "https://p5.strivemath.com/reference/");
+
+    console._log(...arguments);
+}
 
 runCode();
