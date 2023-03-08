@@ -22,4 +22,5 @@ p5-python-web is being developed in tandem with [p5.teach.js](https://github.com
 # Contributors
 
 - [Nick McIntyre](https://github.com/nickmcintyre)
+- [Tamir Shklaz](https://github.com/TamirShklaz)
 - [Maxim Schoemaker](https://github.com/MaximSchoemaker)
