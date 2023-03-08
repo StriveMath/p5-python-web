@@ -3,9 +3,9 @@ import PATH from 'path';
 
 const target_path = "dist/p5-python-web.js"
 const source_paths = [
+   "src/skulptSetup.js",
    "lib/skulpt.min.js",
    "lib/skulpt-stdlib.js",
-   "src/skulptSetup.js",
 ];
 
 console.log("load:", source_paths);

@@ -1,3 +1,9 @@
+/*
+    Copyright (C) 2021-2023 Nick McIntyre, Maxim Schoemaker. All rights reserved.
+    Developed by Strive: https://www.strivemath.com/
+    Source: https://github.com/StriveMath/p5-python-web
+*/
+
 function outf(text) {
     console.log(text);
 }
@@ -46,12 +52,12 @@ async function runCode(filename = "sketch.py") {
     );
 }
 
-console._log = console.log;
-console.log = function () {
-    if (typeof arguments[0] === "string")
-        arguments[0] = arguments[0].replace("http://p5js.org/reference/#/p5/", "https://p5.strivemath.com/reference/");
+// console._log = console.log;
+// console.log = function () {
+//     if (typeof arguments[0] === "string")
+//         arguments[0] = arguments[0].replace("http://p5js.org/reference/#/p5/", "https://p5.strivemath.com/reference/");
 
-    console._log(...arguments);
-}
+//     console._log(...arguments);
+// }
 
 runCode();
