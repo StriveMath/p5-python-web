@@ -4,11 +4,12 @@ p5-python-web is a Python execution context with [p5.js](https://github.com/proc
 
 # Usage
 
-Load [p5-python-web.js](https://github.com/StriveMath/p5-python-web/blob/main/dist/p5-python-web.js) in a script tag below the p5.js include inside index.html ([example](https://github.com/StriveMath/p5-python-web/tree/main/examples/simple/))
+Load [p5-python-web.js](https://github.com/StriveMath/p5-python-web/blob/main/dist/p5-python-web.js) in a script tag below p5.js (and any libraries) inside index.html ([example](https://github.com/StriveMath/p5-python-web/tree/main/examples/simple/))
 
 ```html
 <head>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+   <!-- load any p5.js libraries -->
    <script src="https://cdn.jsdelivr.net/gh/StriveMath/p5-python-web/dist/p5-python-web.js"></script>
 </head>
 ```
