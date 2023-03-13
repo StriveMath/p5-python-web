@@ -5,6 +5,7 @@
 */
 
 function outf(text) {
+    console.log("skulpt outf:");
     console.log(text);
 }
 
@@ -20,7 +21,11 @@ function builtinRead(x) {
 function uncaught(pythonException) {
     const lineno = pythonException.traceback[0].lineno;
     const msg = pythonException.args.v[0].v;
-    const errorMessage = msg + " on line " + lineno;
+    const errorMessage = msg + "\n on line " + lineno + "\n";
+
+    console.log("skulpt uncaught:")
+    console.log(errorMessage);
+
     throw new Error(errorMessage);
 }
 
@@ -44,9 +49,10 @@ async function runCode(filename = "sketch.py") {
     });
     myPromise.then(
         function (mod) {
-            console.log(" ");
+            // console.log(" ");
         },
         function (err) {
+            console.log("skulpt reject:");
             console.log(err.toString());
         }
     );
