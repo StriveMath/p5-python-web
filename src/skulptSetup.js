@@ -5,7 +5,7 @@
 */
 
 function outf(text) {
-    console.log("skulpt outf:");
+    // console.log("skulpt outf:");
     console.log(text);
 }
 
@@ -23,7 +23,7 @@ function uncaught(pythonException) {
     const msg = pythonException.args.v[0].v;
     const errorMessage = msg + "\n on line " + lineno + "\n";
 
-    console.log("skulpt uncaught:")
+    // console.log("skulpt uncaught:")
     console.log(errorMessage);
 
     throw new Error(errorMessage);
@@ -52,7 +52,7 @@ async function runCode(filename = "sketch.py") {
             // console.log(" ");
         },
         function (err) {
-            console.log("skulpt reject:");
+            // console.log("skulpt reject:");
             console.log(err.toString());
         }
     );
