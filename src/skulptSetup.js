@@ -18,7 +18,7 @@ function builtinRead(x) {
     return Sk.builtinFiles["files"][x];
 }
 
-function uncaught(pythonException) {
+function uncaught(pythonException) { // logs error during runtime (p5.js draw)
     const lineno = pythonException.traceback[0].lineno;
     const msg = pythonException.args.v[0].v;
     const errorMessage = msg + "\n on line " + lineno + "\n";
@@ -26,7 +26,7 @@ function uncaught(pythonException) {
     // console.log("skulpt uncaught:")
     console.log(errorMessage);
 
-    throw new Error(errorMessage);
+    throw new Error(errorMessage); // used to stop execution
 }
 
 async function runCode(filename = "sketch.py") {
@@ -51,19 +51,17 @@ async function runCode(filename = "sketch.py") {
         function (mod) {
             // console.log(" ");
         },
-        function (err) {
+        function (err) { // logs error during startup (p5.js init)
             // console.log("skulpt reject:");
             console.log(err.toString());
         }
     );
 }
 
-// console._log = console.log;
-// console.log = function () {
-//     if (typeof arguments[0] === "string")
-//         arguments[0] = arguments[0].replace("http://p5js.org/reference/#/p5/", "https://p5.strivemath.com/reference/");
-
-//     console._log(...arguments);
-// }
+p5._report = function (message, func, color) {
+    message = message.replace(/\[.*?\] /, "");
+    message += `\nreference: https://p5.strivemath.com/reference/${func.toLowerCase()}`
+    throw new Error(message);
+}
 
 runCode();
