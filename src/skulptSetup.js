@@ -64,4 +64,6 @@ p5._report = function (message, func, color) {
     throw new Error(message);
 }
 
+p5.prototype.linmap = p5.prototype.map;
+
 runCode();
