@@ -26,7 +26,7 @@ function uncaught(pythonException) { // logs error during runtime (p5.js draw)
     // console.log("skulpt uncaught:")
     console.log(errorMessage);
 
-    throw new Error(errorMessage); // used to stop execution
+    // throw new Error(errorMessage); // used to stop execution
 }
 
 async function runCode(filename = "sketch.py") {
