@@ -3,7 +3,6 @@ from p5 import *
 
 def setup():
   coordinateMode(BOTTOM_LEFT)
-  colorMode(1)
   createCanvas(334 * 1.5, 334)
   loadFont('assets/PermanentMarker-Regular.ttf', 'font')
   loadImage('assets/ada.jpg', 'ada')
