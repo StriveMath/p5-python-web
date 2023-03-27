@@ -26,7 +26,7 @@ function uncaught(pythonException) { // logs error during runtime (p5.js draw)
     // console.log("skulpt uncaught:")
     console.log(errorMessage);
 
-    throw new Error(errorMessage); // used to stop execution
+    // throw new Error(errorMessage); // used to stop execution
 }
 
 async function runCode(filename = "sketch.py") {
@@ -63,6 +63,8 @@ p5._report = function (message, func, color) {
     message += `\nreference: https://p5.strivemath.com/reference/${func.toLowerCase()}`
     throw new Error(message);
 }
+
+p5.prototype.linmap = p5.prototype.map;
 
 runCode();
 
