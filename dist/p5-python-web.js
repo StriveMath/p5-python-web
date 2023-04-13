@@ -19,8 +19,8 @@ function builtinRead(x) {
 }
 
 function uncaught(pythonException) { // logs error during runtime (p5.js draw)
-    const lineno = pythonException.traceback[0].lineno;
-    const msg = pythonException.args.v[0].v;
+    const lineno = pythonException.traceback[0]?.lineno;
+    const msg = pythonException.args.v[0]?.v;
     const errorMessage = msg + "\n on line " + lineno + "\n";
 
     // console.log("skulpt uncaught:")
