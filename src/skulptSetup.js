@@ -60,7 +60,7 @@ async function runCode(filename = "sketch.py") {
 
 p5._report = function (message, func, color) {
     message = message.replace(/\[.*?\] /, "");
-    message += `\nreference: https://p5.strivemath.com/reference/${func.toLowerCase()}`
+    message += `\nreference: https://learnpython.strivemath.com/p5-python-web/${func}`
     throw new Error(message);
 }
 
