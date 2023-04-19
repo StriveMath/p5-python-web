@@ -4,37 +4,43 @@
     Source: https://github.com/StriveMath/p5-python-web
 */
 
-function outf(text) {
-    // console.log("skulpt outf:");
-    console.log(text);
+
+p5._report = function (message, func, color) {
+    message = message.replace(/\[.*?\] /, "");
+    message += `\nreference: https://learnpython.strivemath.com/p5-python-web/${func}`
+    throw new Error(message);
 }
 
-function builtinRead(x) {
-    if (
-        Sk.builtinFiles === undefined ||
-        Sk.builtinFiles["files"][x] === undefined
-    )
-        throw "File not found: '" + x + "'";
-    return Sk.builtinFiles["files"][x];
-}
+p5.prototype.linmap = p5.prototype.map;
 
-function uncaught(pythonException) { // logs error during runtime (p5.js draw)
-    const lineno = pythonException.traceback[0]?.lineno;
-    const msg = pythonException.args.v[0]?.v;
-    const errorMessage = msg + "\n on line " + lineno + "\n";
 
-    // console.log("skulpt uncaught:")
-    console.log(errorMessage);
 
-    // throw new Error(errorMessage); // used to stop execution
-}
 
-async function runCode(filename = "sketch.py") {
-    const sketchFile = await fetch(filename);
-    const code = await sketchFile.text()
+async function runCode(code, log, error) {
+
+    function builtinRead(x) {
+        if (
+            Sk.builtinFiles === undefined ||
+            Sk.builtinFiles["files"][x] === undefined
+        )
+            throw "File not found: '" + x + "'";
+        return Sk.builtinFiles["files"][x];
+    }
+
+    function uncaught(pythonException) { // logs error during runtime (p5.js draw)
+        const lineno = pythonException.traceback[0]?.lineno;
+        const msg = pythonException.args.v[0]?.v;
+        const errorMessage = msg + "\n on line " + lineno + "\n";
+
+        // console.log("skulpt uncaught:")
+        error(errorMessage);
+
+        // throw new Error(errorMessage); // used to stop execution
+    }
+
     Sk.pre = "output";
     Sk.configure({
-        output: outf,
+        output: log,
         read: builtinRead,
         uncaughtException: uncaught,
     });
@@ -53,17 +59,21 @@ async function runCode(filename = "sketch.py") {
         },
         function (err) { // logs error during startup (p5.js init)
             // console.log("skulpt reject:");
-            console.log(err.toString());
+            error(err.toString());
         }
     );
 }
 
-p5._report = function (message, func, color) {
-    message = message.replace(/\[.*?\] /, "");
-    message += `\nreference: https://learnpython.strivemath.com/p5-python-web/${func}`
-    throw new Error(message);
+async function loadCode(filename = "sketch.py") {
+    const sketchFile = await fetch(filename);
+    const code = await sketchFile.text()
+    return code;
 }
 
-p5.prototype.linmap = p5.prototype.map;
+async function runAutomatic() {
+    const code = await loadCode();
+    runCode(code, console.log, console.log);
+}
 
-runCode();
+const MANUAL = document.currentScript.getAttribute("manual") !== null;
+if (!MANUAL) runAutomatic();

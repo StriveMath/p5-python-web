@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+
+    <script src="../../../lib/skulpt.min.js"></script>
+    <script src="../../../lib/skulpt-stdlib.js"></script>
+    <script src="../../../src/skulptSetup.js" manual></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8"/>
+    <title>Manual Test</title>
+</head>
+<body>
+<pre id="output" style="display: none;"></pre>
+<div id="sketch-holder"></div>
+</body>
+<script>
+async function loadCode(filename = "sketch.py") {
+    const sketchFile = await fetch(filename);
+    const code = await sketchFile.text()
+    return code;
+}
+
+async function runAutomatic() {
+    const code = await loadCode();
+    runCode(code, console.log, console.log);
+}
+
+runAutomatic();
+</script>
+</html>
