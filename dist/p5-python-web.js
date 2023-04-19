@@ -16,7 +16,7 @@ p5.prototype.linmap = p5.prototype.map;
 
 
 
-async function runCode(code, log, error) {
+async function runCode(code, log, error, lineNumberOffset = 0) {
 
     function builtinRead(x) {
         if (
@@ -28,7 +28,12 @@ async function runCode(code, log, error) {
     }
 
     function uncaught(pythonException) { // logs error during runtime (p5.js draw)
-        const lineno = pythonException.traceback[0]?.lineno;
+        let lineno = pythonException.traceback[0]?.lineno;
+        if (lineno !== undefined) {
+            lineno = parseInt(lineno);
+            lineno = isNaN(lineno) ? undefined : lineno + lineNumberOffset;
+        }
+
         const msg = pythonException.args.v[0]?.v;
         const errorMessage = msg + "\n on line " + lineno + "\n";
 
