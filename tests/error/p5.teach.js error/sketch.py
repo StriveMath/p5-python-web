@@ -1,13 +1,18 @@
 from p5 import *
 
-
 def setup():
-  # coordinateMode()
   createCanvas(400, 400)
-
+  background("black")
+  drawTickAxes()
 
 def draw():
-  background('black')
-  drawTickAxes()
-  fill('hotpink')
-  circle(200, 200)
+
+  linmap()
+
+  # drawTickAxes()
+  coordinateMode()
+
+  image()
+  loadImage()
+  loadSound()
+
