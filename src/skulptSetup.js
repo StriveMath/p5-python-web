@@ -59,7 +59,7 @@ async function runCode(code, log, error) {
         },
         function (err) { // logs error during startup (p5.js init)
             // console.log("skulpt reject:");
-            error(err.toString());
+            uncaught(err);
         }
     );
 }
