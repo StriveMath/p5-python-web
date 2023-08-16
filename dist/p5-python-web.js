@@ -83,6 +83,18 @@ async function runAutomatic() {
 const MANUAL = document.currentScript.getAttribute("manual") !== null;
 if (!MANUAL) runAutomatic();
 
+// attach all p5 instance properties to the p5 prototype so they are accessible in Python
+// necessary for p5play bindings
+p5.prototype.registerMethod("init", function () {
+    for (let key in this) {
+        const val = this[key];
+        if (p5.prototype[key] === undefined) {
+            p5.prototype[key] = val;
+            // console.log(key, "attached to p5.prototype");
+        }// else
+        // console.log(key, "already exists on p5.prototype");
+    }
+});
 (function(){/*
  unicode_hack.js
     Copyright (C) 2010-2012  Marcelo Gibson de Castro Gonçalves. All rights reserved.
