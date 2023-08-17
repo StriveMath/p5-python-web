@@ -94,6 +94,7 @@ p5.prototype.registerMethod("init", function () {
         }// else
         // console.log(key, "already exists on p5.prototype");
     }
+    this.loadImage = p5.prototype.loadImage;
 });
 (function(){/*
  unicode_hack.js
