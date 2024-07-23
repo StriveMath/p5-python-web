@@ -2,6 +2,8 @@
 
 p5-python-web lets you run p5.js sketches written in Python on the web! It's is a Python execution context with [p5.js](https://github.com/processing/p5.js) bindings. It uses [Skulpt](https://github.com/skulpt/skulpt) to execute p5.js sketches written in Python. Its dynamic bindings allow for any p5.js library to be used as well.
 
+The build is hosted on [jsDeiliver](https://www.jsdelivr.com/) and is accessible via https://cdn.jsdelivr.net/gh/StriveMath/p5-python-web
+
 # Usage
 
 Load [p5-python-web.js](https://github.com/StriveMath/p5-python-web/blob/main/dist/p5-python-web.js) in a script tag below p5.js (and any libraries) inside index.html ([example](https://github.com/StriveMath/p5-python-web/tree/main/examples/simple/))
