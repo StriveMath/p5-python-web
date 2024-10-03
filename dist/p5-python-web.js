@@ -16,7 +16,7 @@ p5.prototype.linmap = p5.prototype.map;
 
 
 
-async function runCode(code, log, error, lineNumberOffset = 0) {
+async function runCode(code, log, error, lineNumberOffset = 0, success = () => {}) {
 
     function builtinRead(x) {
         if (
@@ -60,7 +60,7 @@ async function runCode(code, log, error, lineNumberOffset = 0) {
     });
     myPromise.then(
         function (mod) {
-            // console.log(" ");
+            success();
         },
         function (err) { // logs error during startup (p5.js init)
             // console.log("skulpt reject:");
