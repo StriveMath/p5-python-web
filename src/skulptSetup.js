@@ -18,13 +18,27 @@ p5.prototype.linmap = p5.prototype.map;
 
 async function runCode(code, log, error, lineNumberOffset = 0, success = () => {}) {
 
-    function builtinRead(x) {
-        if (
-            Sk.builtinFiles === undefined ||
-            Sk.builtinFiles["files"][x] === undefined
-        )
-            throw "File not found: '" + x + "'";
-        return Sk.builtinFiles["files"][x];
+    const externalLibraries = {
+        "./numpy/__init__.js": "https://cdn.jsdelivr.net/gh/StriveMath/p5-python-web@master/numpy/__init__.js"
+    };
+  
+    function builtinRead(file) {
+        // console.log("Attempting file: " + Sk.ffi.remapToJs(file));
+
+        if (externalLibraries[file] !== undefined) {
+            return Sk.misceval.promiseToSuspension(
+                fetch(externalLibraries[file]).then(
+                    function (resp) { 
+                        return resp.text();
+                    }
+                )
+            );
+        }
+
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][file] === undefined)
+            throw "File not found: '" + file + "'";
+
+        return Sk.builtinFiles["files"][file];
     }
 
     function uncaught(pythonException) { // logs error during runtime (p5.js draw)
@@ -48,6 +62,7 @@ async function runCode(code, log, error, lineNumberOffset = 0, success = () => {
         output: log,
         read: builtinRead,
         uncaughtException: uncaught,
+        __future__: Sk.python3,
     });
     Sk.canvas = "sketch-holder";
     const myPromise = Sk.misceval.asyncToPromise(function () {
